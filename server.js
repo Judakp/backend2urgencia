@@ -23,7 +23,7 @@ const blogRoutes       = require("./routesblog");
 const hopitalRoutes    = require("./routeshopital");
 const pharmacieRoutes  = require("./routespharmacie");
 const pompierRoutes    = require("./routespompiers");
-const stationRoutes    = require("./routesstations");
+
 
 
 // ─── UTILISATION DES ROUTES ──────────────────────────────────────────────────
@@ -33,7 +33,7 @@ app.use("/api/blog",       blogRoutes);
 app.use("/api/hopitaux",   hopitalRoutes);
 app.use("/api/pharmacies", pharmacieRoutes);
 app.use("/api/pompiers",   pompierRoutes);
-app.use("/api/stations",   stationRoutes);
+
 
 
 // Connexion à MongoDB

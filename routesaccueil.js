@@ -1,11 +1,30 @@
 // routes/routesaccueil.js
-// routes/accueil.js
 const express = require('express');
 const router = express.Router();
+const ContactMessage = require('./ContactMessage');
 
-// Exemple de route
+// GET de test
 router.get('/', (req, res) => {
   res.send("Bienvenue sur l'accueil !");
 });
 
-module.exports = router; // ← c'est ça qui permet app.use(...) de fonctionner
+// POST pour recevoir les messages du formulaire
+router.post('/contact', async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: "Tous les champs sont requis." });
+    }
+
+    const newMessage = new ContactMessage({ name, email, message });
+    await newMessage.save();
+
+    res.status(201).json({ message: "Message bien enregistré !" });
+  } catch (error) {
+    console.error("Erreur lors de l’enregistrement :", error);
+    res.status(500).json({ error: "Erreur serveur." });
+  }
+});
+
+module.exports = router;
