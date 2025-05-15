@@ -1,5 +1,3 @@
-
-
 // server.js
 
 const express       = require("express");
@@ -46,3 +44,8 @@ mongoose
 // Lancement du serveur
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Serveur actif sur le port ${PORT}`));
+
+app.get("/", (req, res) => {
+  res.send("Bienvenue sur l'API backend Urgencia");
+});
+
